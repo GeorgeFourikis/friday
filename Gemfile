@@ -7,6 +7,8 @@ end
 gem 'bootstrap-sass'
 gem 'sprockets'
 gem 'sass-rails'
+gem 'simple_form'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
