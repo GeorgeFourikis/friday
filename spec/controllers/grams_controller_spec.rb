@@ -1,14 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe GramsController, type: :controller do
-	  describe "grams#index action" do
+
+  describe "grams#show action" do
+    it "should successfully show the page if the gram is found" do
+        gram = FactoryGirl.create(:gram)
+        get :show, id: gram.id
+        expect(response).to have_http_status(:success) 
+    end
+    
+    it "should return a 404 error if the gram is not found" do
+        get :show, id: 'TACOCAT'
+        expect(response).to have_http_status(:not_found)
+    end
+  end
+
+  describe "grams#index action" do
 	      it "should successfully show the page" do
 		      get :index
 	      	  expect(response).to have_http_status(:success)
     	  end
       end
 
-describe "grams#new action" do
+  describe "grams#new action" do
     it "should require users to be logged in" do
       get :new
       expect(response).to redirect_to new_user_session_path
@@ -26,15 +40,15 @@ describe "grams#new action" do
 end
 
 
-describe "grams#create action" do
+  describe "grams#create action" do
 
-  it "should require users to be logged in" do
-    post :create, gram: { message: "Hello" }
-    expect(response).to redirect_to new_user_session_path
-  end
+    it "should require users to be logged in" do
+      post :create, gram: { message: "Hello" }
+      expect(response).to redirect_to new_user_session_path
+    end
 
-  
-  it "should successfully create a new gram in our database" do
+    
+    it "should successfully create a new gram in our database" do
       user = FactoryGirl.create(:user)
       sign_in user
 
