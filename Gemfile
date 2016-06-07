@@ -10,6 +10,9 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'devise'
 gem "factory_girl_rails", "~> 4.0"
+gem 'carrierwave'
+gem "figaro"
+gem "fog"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
